@@ -121,7 +121,7 @@ return (
 
 -        Squirtle <PokemonType type={pokemon["Squirtle"].type}/>
 
-*        {selectedPokemon} <PokemonType type={pokemon[selectedPokemon].type}/>
++        {selectedPokemon} <PokemonType type={pokemon[selectedPokemon].type}/>
 
     </p>
   );
@@ -129,13 +129,85 @@ return (
 
 </details>
 
-Once you've done this step, try changing the value of `selectedPokemon` to `"Bulbasaur"` to test if it works. The type should automatically update to display grass instead of water.
+Once you've done this step, try changing the value of `selectedPokemon` to `"Bulbasaur"` to test if it works. The type should automatically update to display grass instead of water!
 
-## Using the Poke-API
+Now that we can easily change pokemon by editing the code, lets allow the user to change it as well. To do this we will add buttons for each pokemon in our database.
 
-What if we wanted to automatically figure out the type from just the Pokemon name? For example if we had the name Squirtle, it would automatically know to display water type.
+## Updating the "state" of the page
 
-To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/).
+In React, when you want to use persistent variables that will change, you need to use a feature called "state". State gets updated as the user interacts with your page. We need a state to track what pokemon the user is currently viewing.
+
+Lets convert the variable `selectedPokemon` to a state. We will import a React function called `useState`.
+
+```diff
+- import React from "react";
++ import React, { useState } from "react";
+import { PokemonType } from "./PokemonType";
+
+export function Pokedex() {
+  const pokemon = {
+    Squirtle: { type: "water" },
+    Bulbasaur: { type: "grass" },
+    Charmander: { type: "fire" }
+  };
+-  const selectedPokemon = "Bulbasaur"
++  const [selectedPokemon, setSelectedPokemon] = useState("Bulbasaur");
+```
+
+Once you've done this, the page should still look exactly the same, since we set the state to start with the value `"Bulbasaur"`.
+
+Now lets add a `<button>` to update the state. We need to modify the `return` value to include a button, while we're at it, we should also put everything into a `<div>` which is just a container to keep everything together. 
+
+Change the return to
+```jsx
+return (
+  <div>
+      <p>
+        {selectedPokemon}
+
+        <PokemonType type={pokemon[selectedPokemon].type} />
+      </p>
+
+      <p>Select pokemon:</p>
+      <button>Squirtle</button>
+      <button>Charmander</button>
+      <button>Bulbasaur</button>
+    </div>
+);
+```
+
+You should see the page update to include our three buttons for selecting pokemon. However, the buttons won't do anything yet since we haven't programmed them to update the state.
+
+Let's start with the button for Squirtle; we will add some `onClick` code which will run when the user clicks the button.
+
+```diff
+- <button>Squirtle</button>
++ <button onClick={() => setSelectedPokemon("Squirtle)}>Squirtle</button>
+```
+
+If you don't understand this, that's okay, its just the javascript syntax for a short form function. In our function we said to set the selected pokemon to Squirtle on click. You can test this right away, when you click the button the pokemon should update to Squirtle!
+
+Try programming the other two buttons yourself.
+
+<details>
+  <summary>Click here to reveal solution</summary>
+  
+  ```diff
+- <button>Charmander</button>
+- <button>Bulbasaur</button>
++ <button onClick={() => setSelectedPokemon("Charmander")}>Charmander</button>
++ <button onClick={() => setSelectedPokemon("Bulbasaur")}>Bulbasaur</button>
+  ```
+
+</details>
+
+Now we have a really basic Pokedex! We can click on different Pokemon to see their type. 
+
+## Using the PokeAPI
+
+What if we don't want to manually input the type of every Pokemon? To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/). We can ask this API for information about any pokemon programmatically! This will save us a lot of time so we don't have to input the type of every single Pokemon. In addition, the PokeAPI gets updated constantly when they add or change pokemon, so we don't have to worry about maintaining our data.
+
+
 
 ## Getting the image
 
