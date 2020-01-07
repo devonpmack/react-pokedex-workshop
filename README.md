@@ -19,7 +19,7 @@ export function Pokedex() {
   return (
     <p>
         Edit <code>src/Pokedex.js</code> and save to reload.
-    <p>
+    </p>
   );
 }
 ```
@@ -34,7 +34,7 @@ Let's remove the message we have right now.
   return (
     <p>
 -        Edit <code>src/Pokedex.js</code> and save to reload.
-    <p>
+    </p>
   );
 ```
 
@@ -44,7 +44,7 @@ We want our Pokedex to display information about a Pokemon. Let's start with Squ
   return (
     <p>
 +        Squirtle: water
-    <p>
+    </p>
   );
 ```
 
