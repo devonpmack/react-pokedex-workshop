@@ -539,10 +539,11 @@ Next, add an `onClick` handler to the search button that calls our function `get
 ```
 </details>
 
+You should now be able to search for info about any Pokemon!
 
 ## The End
 
-Thanks for going through the workshop, I hope you enjoyed! You should now be able to build your own React apps!
+Congratulations and thanks for going through the workshop! I hope you enjoyed, you'll now be able to build your own React apps!
 
 If you're interested in continuing the Pokedex here are some ideas:
 - Capitalize the Pokemon name
