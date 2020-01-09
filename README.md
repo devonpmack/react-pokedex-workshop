@@ -12,7 +12,7 @@ Welcome to my React workshop. React is a fantastic framework for Javascript that
 
 I've provided some starting code for you in `src/Pokedex.js`. Open it in your favourite text editor. You should see
 
-```tsx
+```jsx
 import React from 'react';
 
 export function Pokedex() {
@@ -539,7 +539,30 @@ Next, add an `onClick` handler to the search button that calls our function `get
 ```
 </details>
 
-You should now be able to search for info about any Pokemon!
+You should now be able to search for info about any Pokemon! But if the Pokemon doesn't exist, the app will break. Let's fix that.
+
+In `getPokemonInfo` the `response` object has a property `response.ok` which indicates whether the request was successful. We can leverage that to show an `alert` error message if `ok` is false, and then exit the function.
+
+<details>
+  <summary>Click here to reveal solution</summary>
+  
+```diff
+  async function getPokemonInfo(name) {
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+    const response = await fetch(URL);
++    if (!response.ok) {
++      alert("Pokemon does not exist");
++      return;
++    }
+    const data = await response.json();
+
+    setSelectedPokemon(data);
+  }
+```
+</details>
+
+Everything should now be working!
 
 ## The End
 
