@@ -167,7 +167,7 @@ return (
         <PokemonType type={pokemon[selectedPokemon].type} />
       </p>
 
-      <p>Select pokemon:</p>
+      <p>Select Pokemon:</p>
       <button>Squirtle</button>
       <button>Charmander</button>
       <button>Bulbasaur</button>
@@ -624,7 +624,7 @@ export function Pokedex() {
           <img src={selectedPokemon.sprites.front_default} alt="sprite" />
         </div>
       )}
-      <p>Select pokemon:</p>
+      <p>Select Pokemon:</p>
       <button onClick={() => getPokemonInfo("squirtle")}>Squirtle</button>
       <button onClick={() => getPokemonInfo("bulbasaur")}>Bulbasaur</button>
       <button onClick={() => getPokemonInfo("charmander")}>Charmander</button>
