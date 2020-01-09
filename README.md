@@ -17,9 +17,9 @@ import React from 'react';
 
 export function Pokedex() {
   return (
-    <p>
+    <h4>
         Edit <code>src/Pokedex.js</code> and save to reload.
-    </p>
+    </h4>
   );
 }
 ```
@@ -32,9 +32,11 @@ Let's remove the message we have right now.
 
 ```diff
   return (
-    <p>
+    <div>
+-    <h4>
 -        Edit <code>src/Pokedex.js</code> and save to reload.
-    </p>
+-    </h4>
+    </div>
   );
 ```
 
@@ -42,9 +44,9 @@ We want our Pokédex to display information about a Pokemon. Let's start with Sq
 
 ```diff
   return (
-    <p>
-+        Squirtle: water
-    </p>
+    <div>
++      <h4>Squirtle: water</h4>
+    </div>
   );
 ```
 
@@ -53,10 +55,12 @@ If you save the code and go back to your browser, you should see that the text w
 Lets make the type look like an actual Pokemon type. I included a component called `PokemonType` which we can use for this.
 
 ```diff
-    <p>
--        Squirtle: water
-+        Squirtle <PokemonType type={"water"}/>
-    </p>
+  <div>
+-    <h4>Squirtle: water</h4>
++    <h4>Squirtle</h4>
+
++    <PokemonType type={"water"}/>
+  </div>
 ```
 
 Now if you save that, you should see an actual Pokemon  type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
@@ -92,17 +96,20 @@ Instead of hardcoding the type of Squirtle to water, change the prop `type` of `
   <summary>Click here to reveal solution</summary>
   
   ```diff
-      <p>
--        Squirtle <PokemonType type={"water"}/>
-+        Squirtle <PokemonType type={pokemon["Squirtle"].type} />
-    </p>
+    <div>
+      <h4>Squirtle</h4>
+
+-    <PokemonType type={"water"}/>
++    <PokemonType type={pokemon["Squirtle"].type} />
+
+    </div>
   ```
   
 </details>
 
 After implementing this code, nothing should change and it should still show Squirtle along with water type.
 
-Put `"Squirtle"` into a variable called `selectedPokemon` to make it so we can change the value. You can replace the text `Squirtle` inside the `<p>` with `{selectedPokemon}` to display the pokemon name to the screen.
+Put `"Squirtle"` into a variable called `selectedPokemon` to make it so we can change the value. You can replace the text `Squirtle` inside the `<h4>` with `{selectedPokemon}` to display the pokemon name to the screen.
 
 <details>
   <summary>Click here to reveal solution</summary>
@@ -116,13 +123,13 @@ Put `"Squirtle"` into a variable called `selectedPokemon` to make it so we can c
 +  const selectedPokemon = "Squirtle"
 
 return (
-    <p>
-
--        Squirtle <PokemonType type={pokemon["Squirtle"].type}/>
-
-+        {selectedPokemon} <PokemonType type={pokemon[selectedPokemon].type}/>
-
-    </p>
+    <div>
+-    <h4>Squirtle</h4>
++    <h4>{selectedPokemon}</h4>
+  
+-    <PokemonType type={pokemon["Squirtle"].type}/>
++    <PokemonType type={pokemon[selectedPokemon].type}/>
+    </div>
   );
   ```
 
@@ -155,17 +162,17 @@ export function Pokedex() {
 
 Once you've done this, the page should still look exactly the same, since we set the state to start with the value `"Bulbasaur"`.
 
-Now lets add a `<button>` to update the state. We need to modify the `return` value to include a button, while we're at it, we should also put everything into a `<div>` which is just a container to keep everything together. 
+Now lets add a `<button>` to update the state. We need to modify the `return` value to include a button. While we're at it, we should also put the selected pokemon and type into `<div>` to keep it separate. 
 
 Change the return to
 ```jsx
 return (
   <div>
-      <p>
-        {selectedPokemon}
+      <div>
+        <h4>{selectedPokemon}</h4>
 
         <PokemonType type={pokemon[selectedPokemon].type} />
-      </p>
+      </div>
 
       <p>Select Pokemon:</p>
       <button>Squirtle</button>
@@ -239,24 +246,24 @@ To avoid errors when `selectedPokemon` is `undefined` we need to adjust our Reac
 ```diff
 return (
   <div>
--      <p>
--        {selectedPokemon}
+-      <div>
+-        <h4>{selectedPokemon}</h4>
 -
 -        <PokemonType type={pokemon[selectedPokemon].type} />
--      </p>
+-      </div>
 +     {selectedPokemon && (
-+        <p>
++        <div>
 +          {selectedPokemon}
 +
 +          <PokemonType type={type={pokemon[selectedPokemon].type} />
-+        </p>
++        </div>
 +      )}
       ...
   </div>
 );
 ```
 
-To do this we used a bit of weird Javascript / JSX syntax, but what it means it to ignore the `<p>` block if we don't have a value `selectedPokemon`. This is also important so that we don't show an error when data is fetching later.
+To do this we used a bit of weird Javascript / JSX syntax, but what it means it to ignore the `<div>` block if we don't have a value `selectedPokemon`. This is also important so that we don't show an error when data is fetching later.
 
 Now we can start fetching data, lets add a function at the top of our `Pokedex` function that fetches data from the API. We'll call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon  we want 
 info on.
@@ -359,13 +366,13 @@ If that doesn't help you,
   return (
     <div>
       {selectedPokemon && (
-        <p>
--          {selectedPokemon}
-+          {selectedPokemon.species.name}
+        <div>
+-          <h4>{selectedPokemon}</h4>
++          <h4>{selectedPokemon.species.name}</h4>
 
 -          <PokemonType type={pokemon[selectedPokemon].type />
 +          <PokemonType type={selectedPokemon.types[0].type.name} />
-        </p>
+        </div>
       )}
 
       ...
@@ -399,12 +406,12 @@ Copy and paste the `<PokemonType>` component so that we can view two different t
   return (
     <div>
       {selectedPokemon && (
-        <p>
-          {selectedPokemon.species.name}
+        <div>
+          <h4>{selectedPokemon.species.name}</h4>
 
           <PokemonType type={selectedPokemon.types[0].type.name} />
 +          <PokemonType type={selectedPokemon.types[1].type.name} />
-        </p>
+        </div>
       )}
 
       ...
@@ -415,7 +422,7 @@ Copy and paste the `<PokemonType>` component so that we can view two different t
 
 This should actually do the trick right away, but you'll notice that if you click on Squirtle the page will crash. This is because we try to render his second type, but Squirtle only has one type!
 
-To fix this we need to add a condition before rendering the second `<PokemonType>`, this will be similar to how we have the `selectedPokemon && ... ` syntax before the `<p>`. What do you think the condition will be?
+To fix this we need to add a condition before rendering the second `<PokemonType>`, this will be similar to how we have the `selectedPokemon && ... ` syntax before the `<div>`. What do you think the condition will be?
 
 <details>
   <summary>The condition</summary>
@@ -432,14 +439,14 @@ See if you can implement the condition yourself, you'll be able to use the synta
   <summary>Click here to reveal solution</summary>
   
   ```diff
-        <p>
-          {selectedPokemon.species.name}
+        <div>
+          <h4>{selectedPokemon.species.name}</h4>
 
           <PokemonType type={selectedPokemon.types[0].type.name} />
 +          {selectedPokemon.types.length > 1 && (
 +            <PokemonType type={selectedPokemon.types[1].type.name} />
  +         )}
-        </p>
+        </div>
   ```
 </details>
 
@@ -462,25 +469,23 @@ We can get the `src` of the image from our `selectedPokemon` object. Looking at 
 
 In this case we can just show `front_default`, but later on we could extend the Pokédex to allow viewing multiple pictures.
 
-Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprite.front_default`. You may notice that the formatting is wrong, to fix that I surrounded the `<p>` in a `<div>` and moved the `<img>` outside of the `<p>` tag.
+Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprite.front_default`. 
 
 <details>
   <summary>Click here to reveal solution</summary>
   
   ```diff
       {selectedPokemon && (
-+        <div>
-          <p>
+          <div>
             {selectedPokemon.species.name}
 
             <PokemonType type={selectedPokemon.types[0].type.name} />
             {selectedPokemon.types.length > 1 && (
               <PokemonType type={selectedPokemon.types[1].type.name} />
             )}
-          </p>
 
 +          <img src={selectedPokemon.sprites.front_default} alt="sprite" />
-+        </div>
+          </div>
       )}
   ```
 </details>

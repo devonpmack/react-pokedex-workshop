@@ -2,8 +2,10 @@ import React from 'react';
 
 export function Pokedex() {
   return (
-    <p>
+    <div>
+      <h4>
         Edit <code>src/Pokedex.js</code> and save to reload.
-    </p>
+      </h4>
+    </div>
   );
 }
