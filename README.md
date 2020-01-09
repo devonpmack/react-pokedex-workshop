@@ -116,8 +116,7 @@ Put `"Squirtle"` into a variable called `selectedPokemon` to make it so we can c
 +  const selectedPokemon = "Squirtle"
 
 return (
-
-<p>
+    <p>
 
 -        Squirtle <PokemonType type={pokemon["Squirtle"].type}/>
 
