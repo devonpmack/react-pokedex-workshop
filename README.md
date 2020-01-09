@@ -38,7 +38,7 @@ Let's remove the message we have right now.
   );
 ```
 
-We want our Pokedex to display information about a Pokemon. Let's start with Squirtle. Add in his name and type.
+We want our Pokédex to display information about a Pokemon. Let's start with Squirtle. Add in his name and type.
 
 ```diff
   return (
@@ -59,13 +59,13 @@ Lets make the type look like an actual Pokemon type. I included a component call
     </p>
 ```
 
-Now if you save that, you should see an actual pokemon type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
+Now if you save that, you should see an actual Pokemon  type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
 
 ## Switching Pokemon
 
-Ok, so we can show one pokemon, but since it's a Pokedex we want to be able to show details about more than one. Lets add functionality to view the type of different pokemon.
+Ok, so we can show one Pokemon , but since it's a Pokédex we want to be able to show details about more than one. Lets add functionality to view the type of different Pokemon .
 
-First we need a database of pokemon. We'll start by setting up the types for three pokemon: Squirtle, Charmander, and Bulbasaur.
+First we need a database of Pokemon . We'll start by setting up the types for three Pokemon : Squirtle, Charmander, and Bulbasaur.
 
 We define this data in an `Object`:
 
@@ -130,11 +130,11 @@ return (
 
 Once you've done this step, try changing the value of `selectedPokemon` to `"Bulbasaur"` to test if it works. The type should automatically update to display grass instead of water!
 
-Now that we can easily change pokemon by editing the code, lets allow the user to change it as well. To do this we will add buttons for each pokemon in our database.
+Now that we can easily change Pokemon  by editing the code, lets allow the user to change it as well. To do this we will add buttons for each Pokemon  in our database.
 
 ## Updating the "state" of the page
 
-In React, when you want to use persistent variables that will change, you need to use a feature called "state". State gets updated as the user interacts with your page. We need a state to track what pokemon the user is currently viewing.
+In React, when you want to use persistent variables that will change, you need to use a feature called "state". State gets updated as the user interacts with your page. We need a state to track what Pokemon  the user is currently viewing.
 
 Lets convert the variable `selectedPokemon` to a state. We will import a React function called `useState`.
 
@@ -175,7 +175,7 @@ return (
 );
 ```
 
-You should see the page update to include our three buttons for selecting pokemon. However, the buttons won't do anything yet since we haven't programmed them to update the state.
+You should see the page update to include our three buttons for selecting Pokemon . However, the buttons won't do anything yet since we haven't programmed them to update the state.
 
 Let's start with the button for Squirtle; we will add some `onClick` code which will run when the user clicks the button.
 
@@ -184,7 +184,7 @@ Let's start with the button for Squirtle; we will add some `onClick` code which 
 + <button onClick={() => setSelectedPokemon("Squirtle)}>Squirtle</button>
 ```
 
-If you don't understand this, that's okay, its just the javascript syntax for a short form function. In our function we said to set the selected pokemon to Squirtle on click. You can test this right away, when you click the button the pokemon should update to Squirtle!
+If you don't understand this, that's okay, its just the javascript syntax for a short form function. In our function we said to set the selected Pokemon  to Squirtle on click. You can test this right away, when you click the button the Pokemon  should update to Squirtle!
 
 Try programming the other two buttons yourself.
 
@@ -200,17 +200,17 @@ Try programming the other two buttons yourself.
 
 </details>
 
-Now we have a really basic Pokedex! We can click on different Pokemon to see their type. 
+Now we have a really basic Pokédex! We can click on different Pokemon to see their type. 
 
 ## Using the PokeAPI
 
-What if we don't want to manually input the type of every Pokemon? To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/). We can ask this API for information about any pokemon programmatically! This will save us a lot of time so we don't have to input the information every single Pokemon. In addition, the PokeAPI gets updated constantly when they add or change pokemon, so we don't have to worry about maintaining our data.
+What if we don't want to manually input the type of every Pokemon? To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/). We can ask this API for information about any Pokemon  programmatically! This will save us a lot of time so we don't have to input the information every single Pokemon. In addition, the PokeAPI gets updated constantly when they add or change Pokemon , so we don't have to worry about maintaining our data.
 
 PokeAPI is a "RESTful" api which means we can retrieve information through HTTP get requests. Javascript will make this very easy for us.
 
-On their [website](https://pokeapi.co/) you can see an example with the pokemon "Ditto". As you can see the information for ditto is JSON format at this URL: https://pokeapi.co/api/v2/pokemon/ditto. This info is hard to read without formatting it, I recommend the extension [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en) for Chrome or to use Firefox which automatically formats the JSON.
+On their [website](https://pokeapi.co/) you can see an example with the Pokemon "Ditto". As you can see the information for ditto is JSON format at this URL: https://pokeapi.co/api/v2/pokemon/ditto. This info is hard to read without formatting it, I recommend the extension [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en) for Chrome or to use Firefox which automatically formats the JSON.
 
-In this JSON we have access to all kinds of information about the pokemon. For example we can get the types, abilities, and even the pokemon sprites (pictures).
+In this JSON we have access to all kinds of information about the Pokemon . For example we can get the types, abilities, and even the Pokemon sprites (pictures).
 
 Once we start using an API the code gets a bit trickier since we have to fetch information. Let's start by removing our database, since we are going to use PokeAPI as our database from now on. 
 
@@ -223,7 +223,7 @@ Once we start using an API the code gets a bit trickier since we have to fetch i
 -  };
 ```
 
-Next set the initial state of `selectedPokemon` to start as `undefined`. Just like a Pokedex, we will let the user pick which Pokemon they want to view before fetching any information.
+Next set the initial state of `selectedPokemon` to start as `undefined`. Just like a Pokédex, we will let the user pick which Pokemon they want to view before fetching any information.
 
 <details>
   <summary>Click here to reveal solution</summary>
@@ -258,7 +258,7 @@ return (
 
 To do this we used a bit of weird Javascript / JSX syntax, but what it means it to ignore the `<p>` block if we don't have a value `selectedPokemon`. This is also important so that we don't show an error when data is fetching later.
 
-Now we can start fetching data, lets add a function at the top of our `Pokedex` function that fetches data from the API. We'll call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the pokemon we want 
+Now we can start fetching data, lets add a function at the top of our `Pokedex` function that fetches data from the API. We'll call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon  we want 
 info on.
 
 ```diff
@@ -278,7 +278,7 @@ Goals of this function:
 2. Wait for the data to be received
 3. Update the React state with our Pokemon data
 
-First we need to build the URL. Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the pokemon). 
+First we need to build the URL. Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the Pokemon ). 
 
 <details>
   <summary>Click here to reveal solution</summary>
@@ -323,13 +323,13 @@ Once we get the data from the API we should update the state of selectedPokemon 
   ```
 </details>
 
-Now that we have the function to retrieve data from the PokeAPI, update the `onClick` of all our buttons to call this new function which will update the state for us. Make sure you also change the pokemon names to be all lowercase or the API won't work.
+Now that we have the function to retrieve data from the PokeAPI, update the `onClick` of all our buttons to call this new function which will update the state for us. Make sure you also change the Pokemon  names to be all lowercase or the API won't work.
 
 <details>
   <summary>Click here to reveal solution</summary>
   
   ```diff
-      <p>Select pokemon:</p>
+      <p>Select Pokemon :</p>
 - <button onClick={() => setSelectedPokemon("Squirtle")}>Charmander</button>
 - <button onClick={() => setSelectedPokemon("Charmander")}>Charmander</button>
 - <button onClick={() => setSelectedPokemon("Bulbasaur")}>Bulbasaur</button>
@@ -340,7 +340,7 @@ Now that we have the function to retrieve data from the PokeAPI, update the `onC
   ```
 </details>
 
-By now you're probably eager to test it, but it will give you errors until we fix one more thing! We need to update our display to properly access the pokemon data based on the API format. If you're familiar with JSON, try looking at the JSON response of the API at `https://pokeapi.co/api/v2/pokemon/squirtle` and see if you can figure out how to access the Pokemon type and name. In particular look at the field `types` and the field `species`.
+By now you're probably eager to test it, but it will give you errors until we fix one more thing! We need to update our display to properly access the Pokemon  data based on the API format. If you're familiar with JSON, try looking at the JSON response of the API at `https://pokeapi.co/api/v2/pokemon/squirtle` and see if you can figure out how to access the Pokemon type and name. In particular look at the field `types` and the field `species`.
 
 <details>
   <summary>Hint</summary>
@@ -374,16 +374,16 @@ If that doesn't help you,
   ```
 </details>
 
-Once you've done this, refresh your preview in CodeSandbox and it should work! Try clicking on one of the buttons for a pokemon. After a short delay it should fetch the data and display the pokemon name and type! The best part is that now the Pokedex can be easily extended on, you just finished the hardest part!
+Once you've done this, refresh your preview in CodeSandbox and it should work! Try clicking on one of the buttons for a Pokemon . After a short delay it should fetch the data and display the Pokemon  name and type! The best part is that now the Pokédex can be easily extended on, you just finished the hardest part!
 
 ## Showing more than one type
 
 You may have noticed that when you click on Bulbasaur it shows his type as Poison. What's going on?
 
-In the newest generation of pokemon, they made Bulbasaur actually have two types! If you go to [his page on the Pokemon website](https://www.pokemon.com/us/pokedex/bulbasaur) we can see that he's Grass and Poison. We are only showing his first type so we should update our code to show the second one as well.
+In the newest generation of Pokemon , they made Bulbasaur actually have two types! If you go to [his page on the Pokemon website](https://www.pokemon.com/us/pokedex/bulbasaur) we can see that he's Grass and Poison. We are only showing his first type so we should update our code to show the second one as well.
 
 There are two different approaches to this that are both valid.
-1. Assume that a pokemon can only ever have 2 types and check for the case to display 2 types.
+1. Assume that a Pokemon  can only ever have 2 types and check for the case to display 2 types.
 2. Loop through all the types received from the `PokeAPI` , and render a `<PokemonType>` for each one.
 
 Feel free to try either these approaches yourself, but in this case, it's probably easier just to assume a Pokemon can only have 2 types. (so far there are no 3 type Pokemon).
@@ -460,7 +460,7 @@ We can get the `src` of the image from our `selectedPokemon` object. Looking at 
 - front_shiny
 - front_shiny_female
 
-In this case we can just show `front_default`, but later on we could extend the Pokedex to allow viewing multiple pictures.
+In this case we can just show `front_default`, but later on we could extend the Pokédex to allow viewing multiple pictures.
 
 Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprite.front_default`. You may notice that the formatting is wrong, to fix that I surrounded the `<p>` in a `<div>` and moved the `<img>` outside of the `<p>` tag.
 
@@ -485,11 +485,11 @@ Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprite.front_def
   ```
 </details>
 
-Once this is implemented, you should be able to see an image for all three pokemon!
+Once this is implemented, you should be able to see an image for all three Pokemon !
 
 ## Adding an input box for any Pokemon
 
-We want people to be able to find information on any pokemon without needing buttons for all of them. So let's add an input box where they can search for a specific pokemon.
+We want people to be able to find information on any Pokemon  without needing buttons for all of them. So let's add an input box where they can search for a specific Pokemon .
 
 Under the buttons, add some text, an `<input>` and a `<button>` to search.
 
@@ -572,14 +572,14 @@ Everything should now be working!
 
 Congratulations and thanks for going through the workshop! I hope you enjoyed, you'll now be able to build your own React apps!
 
-If you're interested in continuing the Pokedex here are some ideas:
+If you're interested in continuing the Pokédex here are some ideas:
 - Capitalize the Pokemon name
 - Fetch a list of Pokemon from the API and generate buttons for each
 - Show more information about each Pokemon, like abilities, stats, or evolutions.
 - Add a loading spinner when the API is fetching
 - Show a gallery of pictures of the Pokemon
-- If you know CSS, try styling it to look like a Pokedex. (edit `src/styles.css`)
-- [Example](http://reactpoke.thebigoh.net/) of an awesome React Pokedex by Oscar Medrano using the same API. [Source code](https://github.com/OhMedrano/reactPokeDex)
+- If you know CSS, try styling it to look like a Pokédex. (edit `src/styles.css`)
+- [Example](http://reactpoke.thebigoh.net/) of an awesome React Pokédex by Oscar Medrano using the same API. [Source code](https://github.com/OhMedrano/reactPokeDex)
 
 
 Workshop by Devon Mack
