@@ -512,6 +512,10 @@ The searching will work as follows:
 First we need access to what the user has typed into the `<input>`. To do this we can use a handy React function called `useRef` which will keep a reference to the `<input>` so that we can access the value in it. We first assign a variable to `useRef`, and then use that variable in the `<input>` to keep track of it.
 
 ```diff
+- import React, { useState } from "react";
++ import React, { useState, useRef } from "react";
+import { PokemonType } from "./PokemonType";
+
 export function Pokedex() {
   const [selectedPokemon, setSelectedPokemon] = useState(undefined);
 +  const searchBox = useRef(null);
@@ -580,6 +584,61 @@ If you're interested in continuing the Pokedex here are some ideas:
 
 Workshop by Devon Mack
 
+<details>
+  <summary>Final code</summary>
+  
+```jsx
+import React, { useState, useRef } from "react";
+import { PokemonType } from "./PokemonType";
+
+export function Pokedex() {
+  const [selectedPokemon, setSelectedPokemon] = useState(undefined);
+  const searchBox = useRef(null);
+
+  async function getPokemonInfo(name) {
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+    const response = await fetch(URL);
+    if (!response.ok) {
+      alert("Pokemon does not exist");
+      return;
+    }
+    const data = await response.json();
+
+    setSelectedPokemon(data);
+  }
+
+  return (
+    <div>
+      {selectedPokemon && (
+        <div>
+          <p>
+            {selectedPokemon.species.name}
+
+            <PokemonType type={selectedPokemon.types[0].type.name} />
+            {selectedPokemon.types.length > 1 && (
+              <PokemonType type={selectedPokemon.types[1].type.name} />
+            )}
+          </p>
+
+          <img src={selectedPokemon.sprites.front_default} alt="sprite" />
+        </div>
+      )}
+      <p>Select pokemon:</p>
+      <button onClick={() => getPokemonInfo("squirtle")}>Squirtle</button>
+      <button onClick={() => getPokemonInfo("bulbasaur")}>Bulbasaur</button>
+      <button onClick={() => getPokemonInfo("charmander")}>Charmander</button>
+      <p>Or type in a name:</p> <input ref={searchBox} />
+      <button onClick={() => getPokemonInfo(searchBox.current.value)}>
+        Search
+      </button>
+    </div>
+  );
+}
+```
+</details>
+
 Thanks to CodeSandbox for making it easy to write React code without any prior installation.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), a great way to get started on any React project. 
+
