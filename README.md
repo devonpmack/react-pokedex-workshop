@@ -2,7 +2,7 @@
 
 Get started by forking the Code Sandbox starter code:
 
-[![Edit react-pokedex-workshop](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-pokedex-workshop-tvr6s?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit react-pokedex-starter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/devonpmack/react-pokedex-workshop/tree/master/?fontsize=14&hidenavigation=1&theme=dark)
 
 The page will reload if you make edits.
 
@@ -588,7 +588,8 @@ Workshop by Devon Mack
 
 <details>
   <summary>Final code</summary>
-  
+
+[Code Sandbox](https://codesandbox.io/s/pokedex-working-copy-j4kyr)  
 ```jsx
 import React, { useState, useRef } from "react";
 import { PokemonType } from "./PokemonType";
