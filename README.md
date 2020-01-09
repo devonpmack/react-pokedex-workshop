@@ -491,13 +491,12 @@ Once this is implemented, you should be able to see an image for all three Pokem
 
 We want people to be able to find information on any Pokemon  without needing buttons for all of them. So let's add an input box where they can search for a specific Pokemon .
 
-Under the buttons, add some text, an `<input>` and a `<button>` to search.
+Under the buttons, add an `<input>` and a `<button>` to search.
 
 <details>
   <summary>Click here to reveal solution</summary>
   
 ```diff
-+ <p>Or type in a name:</p> 
 + <input />
 + <button>Search</button>
 ```
@@ -522,7 +521,6 @@ export function Pokedex() {
 ```
 
 ```diff
-<p>Or type in a name:</p> 
 - <input />
 + <input ref={searchBox} />
 <button>Search</button>
@@ -573,7 +571,6 @@ Everything should now be working!
 Congratulations and thanks for going through the workshop! I hope you enjoyed, you'll now be able to build your own React apps!
 
 If you're interested in continuing the Pokédex here are some ideas:
-- Capitalize the Pokemon name
 - Fetch a list of Pokemon from the API and generate buttons for each
 - Show more information about each Pokemon, like abilities, stats, or evolutions.
 - Add a loading spinner when the API is fetching
@@ -596,7 +593,7 @@ export function Pokedex() {
   const searchBox = useRef(null);
 
   async function getPokemonInfo(name) {
-    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
 
     const response = await fetch(URL);
     if (!response.ok) {
@@ -610,16 +607,14 @@ export function Pokedex() {
 
   return (
     <div>
-      {selectedPokemon && (
+      {selectedPokemon && selectedPokemon.species && (
         <div>
-          <p>
-            {selectedPokemon.species.name}
+          <h4>{selectedPokemon.species.name}</h4>
 
-            <PokemonType type={selectedPokemon.types[0].type.name} />
-            {selectedPokemon.types.length > 1 && (
-              <PokemonType type={selectedPokemon.types[1].type.name} />
-            )}
-          </p>
+          <PokemonType type={selectedPokemon.types[0].type.name} />
+          {selectedPokemon.types.length > 1 && (
+            <PokemonType type={selectedPokemon.types[1].type.name} />
+          )}
 
           <img src={selectedPokemon.sprites.front_default} alt="sprite" />
         </div>
@@ -628,13 +623,14 @@ export function Pokedex() {
       <button onClick={() => getPokemonInfo("squirtle")}>Squirtle</button>
       <button onClick={() => getPokemonInfo("bulbasaur")}>Bulbasaur</button>
       <button onClick={() => getPokemonInfo("charmander")}>Charmander</button>
-      <p>Or type in a name:</p> <input ref={searchBox} />
+      <input ref={searchBox} />
       <button onClick={() => getPokemonInfo(searchBox.current.value)}>
         Search
       </button>
     </div>
   );
 }
+
 ```
 </details>
 
