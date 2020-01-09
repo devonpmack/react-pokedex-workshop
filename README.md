@@ -278,14 +278,14 @@ Goals of this function:
 2. Wait for the data to be received
 3. Update the React state with our Pokemon data
 
-First we need to build the URL. Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the Pokemon ). 
+First we need to build the URL. Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the Pokemon ). Note that we should apply `toLowerCase()` to the string because the API won't take capitals.
 
 <details>
   <summary>Click here to reveal solution</summary>
   
   ```diff
   async function getPokemonInfo(name) {
-+    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
++    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
   }
   ```
 
@@ -296,7 +296,7 @@ Next we will use a built in JavaScript function called `fetch()` to fetch the da
 
 ```diff
   async function getPokemonInfo(name) {
-    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
 +
 +    const response = await fetch(URL);
 +    const data = await response.json();
@@ -312,7 +312,7 @@ Once we get the data from the API we should update the state of selectedPokemon 
   
   ```diff
   async function getPokemonInfo(name) {
-    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
 
     const response = await fetch(URL);
     const data = await response.json();
@@ -323,7 +323,7 @@ Once we get the data from the API we should update the state of selectedPokemon 
   ```
 </details>
 
-Now that we have the function to retrieve data from the PokeAPI, update the `onClick` of all our buttons to call this new function which will update the state for us. Make sure you also change the Pokemon  names to be all lowercase or the API won't work.
+Now that we have the function to retrieve data from the PokeAPI, update the `onClick` of all our buttons to call this new function which will update the state for us.
 
 <details>
   <summary>Click here to reveal solution</summary>
@@ -333,9 +333,9 @@ Now that we have the function to retrieve data from the PokeAPI, update the `onC
 - <button onClick={() => setSelectedPokemon("Squirtle")}>Charmander</button>
 - <button onClick={() => setSelectedPokemon("Charmander")}>Charmander</button>
 - <button onClick={() => setSelectedPokemon("Bulbasaur")}>Bulbasaur</button>
-+      <button onClick={() => getPokemonInfo("squirtle")}>Squirtle</button>
-+      <button onClick={() => getPokemonInfo("bulbasaur")}>Bulbasaur</button>
-+      <button onClick={() => getPokemonInfo("charmander")}>Charmander</button>
++      <button onClick={() => getPokemonInfo("Squirtle")}>Squirtle</button>
++      <button onClick={() => getPokemonInfo("Bulbasaur")}>Bulbasaur</button>
++      <button onClick={() => getPokemonInfo("Charmander")}>Charmander</button>
 
   ```
 </details>
@@ -550,7 +550,7 @@ In `getPokemonInfo` the `response` object has a property `response.ok` which ind
   
 ```diff
   async function getPokemonInfo(name) {
-    const URL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
 
     const response = await fetch(URL);
 +    if (!response.ok) {
