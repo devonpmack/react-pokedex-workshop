@@ -52,15 +52,23 @@ We want our Pokédex to display information about a Pokemon. Let's start with Sq
 
 If you save the code and go back to your browser, you should see that the text will now say "Squirtle: water".
 
-Lets make the type look like an actual Pokemon type. I included a component called `PokemonType` which we can use for this.
+Lets make the type look like an actual Pokemon type. I included a component called `PokemonType` which we can use for this. You'll have to import it.
+
 
 ```diff
-  <div>
+import React from "react";
++ import { PokemonType } from "./PokemonType";
+
+export function Pokedex() {
+  return (
+    <div>
 -    <h4>Squirtle: water</h4>
 +    <h4>Squirtle</h4>
 
 +    <PokemonType type={"water"}/>
-  </div>
+    </div>
+  );
+}
 ```
 
 Now if you save that, you should see an actual Pokemon  type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
@@ -188,7 +196,7 @@ Let's start with the button for Squirtle; we will add some `onClick` code which 
 
 ```diff
 - <button>Squirtle</button>
-+ <button onClick={() => setSelectedPokemon("Squirtle)}>Squirtle</button>
++ <button onClick={() => setSelectedPokemon("Squirtle")}>Squirtle</button>
 ```
 
 If you don't understand this, that's okay, its just the javascript syntax for a short form function. In our function we said to set the selected Pokemon  to Squirtle on click. You can test this right away, when you click the button the Pokemon  should update to Squirtle!
@@ -469,7 +477,7 @@ We can get the `src` of the image from our `selectedPokemon` object. Looking at 
 
 In this case we can just show `front_default`, but later on we could extend the Pokédex to allow viewing multiple pictures.
 
-Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprite.front_default`. 
+Try adding an `<img>` tag and set the `src` to `selectedPokemon.sprites.front_default`. 
 
 <details>
   <summary>Click here to reveal solution</summary>
