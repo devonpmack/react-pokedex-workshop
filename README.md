@@ -10,7 +10,7 @@ The page will reload if you make edits.
 
 Welcome to my React workshop. React is a fantastic framework for Javascript that makes building interfaces more fun and simpler to develop.
 
-I've provided some starting code for you in `src/Pokedex.js`. Open it in your favourite text editor. You should see
+I've provided some starting code for you in `src/Pokedex.js`. Open it in CodeSandbox. You should see
 
 ```jsx
 import React from 'react';
