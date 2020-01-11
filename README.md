@@ -8,7 +8,7 @@ The page will reload if you make edits.
 
 ## React Basics
 
-Welcome to my React workshop. React is a fantastic framework for Javascript that makes building interfaces more fun and simpler to develo.
+Welcome to my React workshop. React is a fantastic framework for Javascript that makes building interfaces more fun and simpler to develop.
 
 I've provided some starting code for you in `src/Pokedex.js`. Open it in your favourite text editor. You should see
 
@@ -263,7 +263,7 @@ return (
 +        <div>
 +          {selectedPokemon}
 +
-+          <PokemonType type={type={pokemon[selectedPokemon].type} />
++          <PokemonType type={pokemon[selectedPokemon].type} />
 +        </div>
 +      )}
       ...
