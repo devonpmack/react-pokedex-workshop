@@ -439,7 +439,7 @@ The hook will be used to fetch data from the PokeAPI.
 
 💻 Define and export a function called `usePokemonAPI`. In this function set up a state variable called `pokemon`. `pokemon` will store the pokemon that gets fetched from the API. It should start out as `null` or `undefined`.
 
-💻 Coppy over the `getPokemonInfo` function *inside* of your `usePokemonAPI` function (I know this sounds weird, but we want to keep all of the hook's functions encapsulated inside of it). We will also need access to the `pokemon` state. 
+💻 Copy over the `getPokemonInfo` function *inside* of your `usePokemonAPI` function (I know this sounds weird, but we want to keep all of the hook's functions encapsulated inside of it). We will also need access to the `pokemon` state. 
 
 💻 Update `getPokemonInfo` to set the `pokemon` state variable that we declared.
 
