@@ -8,7 +8,7 @@ The page will reload if you make edits.
 
 ## React Basics
 
-Welcome to my React workshop. React is a fantastic framework for Javascript that makes building interfaces more fun and simpler to develop.
+Welcome to my React workshop. React is a fantastic framework for Javascript that makes building interfaces more fun and simpler to develop. In this workshop I'll use the 💻 emoji to show that some coding must be done.
 
 I've provided some starting code for you in `src/Pokedex.js`. Open it in CodeSandbox. You should see
 
@@ -28,9 +28,7 @@ This is what React code looks like. It's a combination of Javascript and HTML. T
 
 It represents the content in the center of our site. In here we can edit the content of our website.
 
-In the workshop I'm using the 💻 emoji to show that some coding must be done.
-
-💻 Let's remove the message we have right now.
+💻 Remove the message we have right now.
 
 ```diff
   return (
@@ -54,7 +52,7 @@ In the workshop I'm using the 💻 emoji to show that some coding must be done.
 
 If you save the code, you should see that the text will now say "Squirtle: water".
 
-💻 Lets make the type look like an actual Pokemon type. I included a component called `PokemonType` which we can use for this. You'll have to import it.
+💻 Now let's make the text look like an actual Pokemon type. I included a component called `PokemonType` which we can use for this. You'll have to import it.
 
 
 ```diff
@@ -73,15 +71,15 @@ export function Pokedex() {
 }
 ```
 
-Now if you save that, you should see an actual Pokemon  type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
+If you save that, you should see an actual Pokemon type. `PokemonType` is another React component. React components can take "properties", and `PokemonType` takes the property `type` which specifies what type it should display. You can try switching the value of `type` to "dragon" or "grass".
 
 ## Switching Pokemon
 
-Ok, so we can show one Pokemon, but since it's a Pokédex we want to be able to show details about more than one. Lets add functionality to view the type of different Pokemon .
+We can show one Pokemon, but since it's a Pokédex we want to be able to show details about more than one. Let's add functionality to view the types of different Pokemon .
 
 First we need a database of Pokemon . We'll start by setting up the types for three Pokemon : Squirtle, Charmander, and Bulbasaur.
 
-💻 We define this data in an `Object`:
+💻 Define this data in an `Object`:
 
 ```diff
 export function Pokedex() {
@@ -94,7 +92,7 @@ export function Pokedex() {
 return (
 ```
 
-Now we can access the type of Squirtle with the code
+Using the database we can access the type of Squirtle with the code
 
 ```js
 pokemon["Squirtle"].type; // => water
@@ -113,7 +111,7 @@ Now that we can easily change Pokemon  by editing the code, lets allow the user 
 
 In React, when you want to use persistent variables that will change, you need to use a feature called "state". State gets updated as the user interacts with your page. We need a state to track what Pokemon  the user is currently viewing.
 
-💻 Lets convert the variable `selectedPokemon` to a state. We will import a React hook called `useState`.
+💻 Convert the variable `selectedPokemon` to a state. We will import a React hook called `useState`.
 
 ```diff
 - import React from "react";
@@ -154,7 +152,7 @@ return (
 
 You should see the page update to include our three buttons for selecting Pokemon . However, the buttons won't do anything yet since we haven't programmed them to update the state.
 
-💻 Let's start with the button for Squirtle; we will add some `onClick` code which will run when the user clicks the button.
+💻 Start with the button for Squirtle; add some `onClick` code which will run when the user clicks the button.
 
 ```diff
 - <button>Squirtle</button>
@@ -179,7 +177,7 @@ In this JSON we have access to all kinds of information about the Pokemon . For 
 
 Once we start using an API the code gets a bit trickier since we have to fetch information. 
 
-💻 Let's start by removing our database, since we are going to use PokeAPI as our database from now on. 
+💻 Start by removing our database, since we are going to use PokeAPI as our database from now on. 
 ```diff
 -  const pokemon = {
 -    Squirtle: { type: "water" },
@@ -188,7 +186,7 @@ Once we start using an API the code gets a bit trickier since we have to fetch i
 -  };
 ```
 
-💻 Next set the initial state of `selectedPokemon` to start as `undefined`. Just like a Pokédex, we will let the user pick which Pokemon they want to view before fetching any information.
+💻 Set the initial state of `selectedPokemon` to start as `undefined`. Just like a Pokédex, we will let the user pick which Pokemon they want to view before fetching any information.
 
 <details>
   <summary>Solution</summary>
@@ -226,7 +224,7 @@ return (
 
 Now we can start fetching data. 
 
-💻 Lets add a function at the top of our `Pokedex` function that fetches data from the API. We'll call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon  we want 
+💻 Add a function at the top of our `Pokedex` function that fetches data from the API. Call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon  we want 
 info on.
 
 ```diff
@@ -246,7 +244,9 @@ Goals of this function:
 2. Wait for the data to be received
 3. Update the React state with our Pokemon data
 
-💻 First we need to build the URL. Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the Pokemon ). Note that we should apply `toLowerCase()` to the string because the API won't take capitals.
+First we need to build the URL. 
+
+💻 Create a variable `URL` to store the URL that we should fetch data from. This will be a combination of the PokeAPI URL and the parameter `name` (name of the Pokemon ). Note that we should apply `toLowerCase()` to the string because the API won't take capitals.
 
 <details>
   <summary>Solution</summary>
@@ -260,7 +260,7 @@ Goals of this function:
   I used Javascript string substitution syntax, but there are multiple ways to do this. For example with the `+` operator.
 </details>
 
-💻 Next we will use a built in JavaScript function called `fetch()` to fetch the data from our URL.
+💻 Next, use a built in JavaScript function called `fetch()` to fetch the data from our URL.
 
 <details>
   <summary>Solution</summary>
@@ -277,13 +277,13 @@ Goals of this function:
 
 Using the `await` syntax we can tell javascript to asynchronously wait for the response from the API.
 
-💻 Once we get the data from the API we should update the state of selectedPokemon to store all the new data we got.
+💻 Once we get the data from the API, update the state of selectedPokemon to store all the new data we got.
 
 💻 Now that we have the function to retrieve data from the PokeAPI, update the `onClick` of all our buttons to instead call this new function which will update the state for us.
 
 By now you're probably eager to test it, but it will give you errors until we fix one more thing! 
 
-💻 We need to update our display to properly access the Pokemon data based on the API format. Try looking at the JSON response of the API at `https://pokeapi.co/api/v2/pokemon/squirtle` and see if you can figure out how to access the Pokemon type and name. In particular look at the field `types` and the field `species`.
+💻 Update our display to properly access the Pokemon data based on the API format. Try looking at the JSON response of the API at `https://pokeapi.co/api/v2/pokemon/squirtle` and see if you can figure out how to access the Pokemon type and name. In particular look at the field `types` and the field `species`.
 
 <details>
   <summary>Hint</summary>
@@ -435,11 +435,11 @@ Creating custom hooks is an advanced feature of React. It can be super useful fo
 
 The hook will be used to fetch data from the PokeAPI.
 
-💻 First, start by creating a file `hooks.js` (really it's only going to store one hook but this is good practice). In the file import `useState` because we are going to store the state of `selectedPokemon` in this hook.
+💻 Start by creating a file `hooks.js` (really it's only going to store one hook but this is good practice). In the file import `useState` because we are going to store the state of `selectedPokemon` in this hook.
 
-💻 Now define and export a function called `usePokemonAPI`. In this function set up a state variable called `pokemon`. `pokemon` will store the pokemon that gets fetched from the API. It should start out as `null` or `undefined`.
+💻 Define and export a function called `usePokemonAPI`. In this function set up a state variable called `pokemon`. `pokemon` will store the pokemon that gets fetched from the API. It should start out as `null` or `undefined`.
 
-💻 Next, copy over our `getPokemonInfo` function *inside* of your `usePokemonAPI` function (I know this sounds weird, but we want to keep all of the hook's functions encapsulated inside of it). We will also need access to the `pokemon` state. 
+💻 Coppy over the `getPokemonInfo` function *inside* of your `usePokemonAPI` function (I know this sounds weird, but we want to keep all of the hook's functions encapsulated inside of it). We will also need access to the `pokemon` state. 
 
 💻 Update `getPokemonInfo` to set the `pokemon` state variable that we declared.
 
@@ -447,7 +447,10 @@ We will return two things from the hook:
 1. The current pokemon that has been fetched
 2. The function to fetch a different pokemon
 
-💻 By convention hooks usually return an array:
+By convention hooks usually return an array:
+
+💻 Return the pokemon state variable and get pokemon function
+
 ```js
 return [pokemon, getPokemonInfo]
 ```
