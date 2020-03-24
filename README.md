@@ -28,6 +28,8 @@ This is what React code looks like. It's a combination of Javascript and HTML. T
 
 It represents the content in the center of our site. In here we can edit the content of our website.
 
+In the workshop I'm using the 💻 emoji to show that some coding must be done.
+
 💻 Let's remove the message we have right now.
 
 ```diff
