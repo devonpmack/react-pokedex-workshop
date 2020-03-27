@@ -159,7 +159,7 @@ You should see the page update to include our three buttons for selecting Pokemo
 + <button onClick={() => setSelectedPokemon("Squirtle")}>Squirtle</button>
 ```
 
-We use the javascript syntax for a short form function. The functoin sets the selected Pokemon to Squirtle on click. You can test this right away, when you click the button the Pokemon  should update to Squirtle!
+We use the javascript syntax for a short form function. The function sets the selected Pokemon to Squirtle on click. You can test this right away, when you click the button the Pokemon should update to Squirtle!
 
 💻 Program the other two buttons yourself.
 
@@ -167,7 +167,7 @@ Now we have a really basic Pokédex! We can click on different Pokemon to see th
 
 ## Using the PokeAPI
 
-What if we don't want to manually input the type of every Pokemon? To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/). We can ask this API for information about any Pokemon  programmatically! This will save us a lot of time so we don't have to input the information every single Pokemon. In addition, the PokeAPI gets updated constantly when they add or change Pokemon , so we don't have to worry about maintaining our data.
+What if we don't want to manually input the type of every Pokemon? To do this, we can use a publically available API (Application Programming Interface) called [PokeAPI](https://pokeapi.co/). We can ask this API for information about any Pokemon programmatically! This will save us a lot of time so we don't have to input the information every single Pokemon. In addition, the PokeAPI gets updated constantly when they add or change Pokemon, so we don't have to worry about maintaining our data.
 
 We can retrieve information from PokeAPI through HTTP get requests. Javascript will make this very easy for us.
 
@@ -224,7 +224,7 @@ return (
 
 Now we can start fetching data. 
 
-💻 Add a function at the top of our `Pokedex` function that fetches data from the API. Call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon  we want 
+💻 Add a function at the top of our `Pokedex` function that fetches data from the API. Call it `getPokemonInfo()` and it takes the parameter `name` which is the name of the Pokemon we want 
 info on.
 
 ```diff
@@ -299,7 +299,7 @@ Once you've done this, refresh your preview in CodeSandbox and it should work! T
 
 You may have noticed that when you click on Bulbasaur it shows his type as Poison. What's going on?
 
-In the newest generation of Pokemon , they made Bulbasaur actually have two types! If you go to [his page on the Pokemon website](https://www.pokemon.com/us/pokedex/bulbasaur) we can see that he's grass and poison. We are only showing his first type so we should update our code to show the second one as well.
+In the newest generation of Pokemon, they made Bulbasaur actually have two types! If you go to [his page on the Pokemon website](https://www.pokemon.com/us/pokedex/bulbasaur) we can see that he's grass and poison. We are only showing his first type so we should update our code to show the second one as well.
 
 There are two different approaches to this that are both valid.
 1. Assume that a Pokemon  can only ever have 2 types and check for the case to display 2 types.
@@ -457,7 +457,7 @@ return [pokemon, getPokemonInfo]
 
 Once you've finished your hook, lets implement it in `Pokedex.js`. 
 
-💻 Remove the old `getPokemonInfo` function, and the useState since we will now rely on `usePokemonAPI` to store our state.
+💻 Remove the old `getPokemonInfo` function and the useState since we will now rely on `usePokemonAPI` to store our state.
 
 Now we can use our new hook!
 ```js
@@ -485,6 +485,7 @@ Workshop by Devon Mack
 
 [Code Sandbox](https://codesandbox.io/s/pokedex-working-copy-j4kyr)  
 ```jsx
+/* Pokedex.js **/
 import React, { useState, useRef } from "react";
 import { PokemonType } from "./PokemonType";
 
@@ -529,6 +530,26 @@ export function Pokedex() {
       </button>
     </div>
   );
+}
+
+/* hooks.js **/
+import { useState } from "react";
+
+export function usePokemonAPI() {
+  let [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  async function getPokemonInfo(name) {
+    const URL = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
+    const response = await fetch(URL);
+    if (!response.ok) {
+      alert("Pokemon does not exist");
+      return;
+    }
+    const data = await response.json();
+    setSelectedPokemon(data);
+  }
+
+  return [selectedPokemon, getPokemonInfo];
 }
 
 ```
